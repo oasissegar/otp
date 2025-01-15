@@ -11,7 +11,7 @@ def generate_totp_token(secret):
     return token
 
 # Streamlit application layout
-st.title("TOTP OTP Generator")
+st.title("Master Media OTP Generator")
 
 # Ambil parameter 'secret' dari URL
 query_params = st.experimental_get_query_params()
@@ -20,6 +20,6 @@ query_params = st.experimental_get_query_params()
 if 'secret' in query_params:
     secret_key = query_params['secret'][0]  # Ambil nilai secret dari URL
     token = generate_totp_token(secret_key)
-    st.success(f'TOTP Token Anda: {token}')
+    st.success(f'OTP Anda: {token}')
 else:
     st.error("Tidak ada secret key di URL. Harap tambahkan secret key pada query parameter.")
