@@ -4,17 +4,20 @@ import base64
 
 def generate_totp_token(secret):
     # Ensure the secret key is Base32 padded correctly
-    if len(secret) % 8 != 0:
-        secret += '=' * (8 - len(secret) % 8)  # Add padding to the secret key if necessary
-
     try:
+        # Pad the secret to a length that is a multiple of 8
+        padded_secret = secret
+        if len(padded_secret) % 8 != 0:
+            padded_secret += '=' * (8 - len(padded_secret) % 8)  # Add padding to make the length a multiple of 8
+        
         # Create a TOTP object with the given secret
-        totp = pyotp.TOTP(secret)
+        totp = pyotp.TOTP(padded_secret)
         # Generate the current TOTP token
         token = totp.now()
         return token
-    except Exception as e:
-        return f"Error generating OTP: {str(e)}"
+    
+    except binascii.Error:
+        return "Invalid Base32 secret key. Please ensure the key is Base32 encoded."
 
 # Streamlit application layout
 st.title("TOTP OTP Generator")
@@ -30,7 +33,7 @@ if 'secret' in query_params:
     token = generate_totp_token(secret_key)
     
     # Display the result
-    if token.startswith("Error"):
+    if token.startswith("Invalid"):
         st.error(token)
     else:
         st.success(f'TOTP Token Anda: {token}')
