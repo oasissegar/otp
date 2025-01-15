@@ -10,7 +10,7 @@ def generate_totp_token(secret):
     
     return token
 
-# Ambil parameter 'secret' dari URL
+st.set_page_config(page_title="Master Media OTP", page_icon="🔑")
 query_params = st.experimental_get_query_params()
 
 # Cek apakah parameter 'secret' ada
