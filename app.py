@@ -11,11 +11,10 @@ def generate_totp_token(secret):
     return token
 
 # Streamlit application layout
-st.title("Master Media OTP Generator")
+st.title("TOTP OTP Generator")
 
 # Ambil parameter 'secret' dari URL
-query_params = st.experimental_get_query_params()
-#query_params = st.query_params()
+query_params = st.query_params
 
 # Cek apakah parameter 'secret' ada
 if 'secret' in query_params:
