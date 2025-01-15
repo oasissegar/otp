@@ -21,7 +21,7 @@ if 'secret' in query_params:
     # Menampilkan OTP di tengah dengan ukuran font yang besar menggunakan HTML
     st.markdown(f"""
         <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
-            <h1 style="font-size: 50px; font-weight: bold; color: green;">OTP Anda: {token}</h1>
+            <h1 style="font-size: 50px; font-weight: bold; color: green;">OTP Anda :\n {token}</h1>
         </div>
     """, unsafe_allow_html=True)
 else:
